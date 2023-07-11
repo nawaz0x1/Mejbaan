@@ -5,7 +5,7 @@ export default function Hero() {
     <section>
       <div className="p-10 md:p-14">
         <h2 className="text-6xl text-center">
-          LET'S FIGHT
+          LET&apos;S FIGHT
           <span className="typo1 text-yellow-300 font-bold block p-4">
             hunger
           </span>
@@ -20,7 +20,7 @@ export default function Hero() {
         </h2>
         <h3 className="font-semibold text-2xl text-center p-2">
           <span className="m-1">✌</span>
-          Let's share our extra food with those in need!
+          Let&apos;s share our extra food with those in need!
           <span className="m-1">✌</span>
         </h3>
       </div>
