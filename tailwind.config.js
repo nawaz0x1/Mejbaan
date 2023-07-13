@@ -9,7 +9,9 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        mebjaan: '#056365',
+        mejbaan: '#056365',
+        mejbaanLite: '#047578',
+        mejbaanDark: '#034647',
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',

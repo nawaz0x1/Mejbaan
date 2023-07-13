@@ -9,5 +9,9 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
-  return <html lang="en">{children}</html>;
+  return (
+    <html lang="en">
+      <body className="text-white bg-mejbaan">{children}</body>
+    </html>
+  );
 }
