@@ -22,6 +22,7 @@ export default function Register() {
   const submitHandler = async (e) => {
     e.preventDefault();
     setIsWorking(true);
+
     try {
       const response = await loginUser(formData);
       setIsLoggedIn(true);
