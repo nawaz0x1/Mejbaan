@@ -7,8 +7,9 @@ import { UserContext } from '@/context/userContext';
 export default function RedirectToDashboard() {
   const router = useRouter();
   const { isLoggedIn } = useContext(UserContext);
-
-  if (isLoggedIn) router.push('/dashboard');
+  useEffect(() => {
+    if (isLoggedIn) router.push('/dashboard');
+  });
 
   return null;
 }
