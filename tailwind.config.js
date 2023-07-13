@@ -8,6 +8,9 @@ module.exports = {
   plugins: [require('daisyui')],
   theme: {
     extend: {
+      colors: {
+        mebjaan: '#056365',
+      },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic':
