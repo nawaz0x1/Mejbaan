@@ -11,5 +11,5 @@ export default function DashboardLayout({ children }) {
     if (!isLoggedIn) router.replace('/login');
   });
 
-  return <>{children}</>;
+  return <>{isLoggedIn && children}</>;
 }
