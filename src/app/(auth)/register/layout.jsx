@@ -1,8 +1,8 @@
 export const metadata = {
-  title: 'Login | Mejbaan',
+  title: 'Register | Mejbaan',
   description: 'A Food Sharing Platform',
 };
 
-export default function LoginLayout({ children }) {
+export default function RegisterLayout({ children }) {
   return <>{children}</>;
 }
