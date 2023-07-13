@@ -16,6 +16,6 @@ export function UserContextProvider({ children }) {
       const response = await isUserLoggedIn();
       setIsLoggedIn(response);
     })();
-  }, []);
+  });
   return <UserContext.Provider value={value}> {children}</UserContext.Provider>;
 }
