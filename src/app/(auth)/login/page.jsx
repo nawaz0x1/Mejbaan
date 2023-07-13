@@ -5,16 +5,15 @@ import Link from 'next/link';
 import Image from 'next/image';
 import Logo from '@/assets/appLogo.png';
 import { useRouter } from 'next/navigation';
-import { createUserAccount } from '@/appwrite/utils';
+import { loginUser } from '@/appwrite/utils';
 import { UserContext } from '@/context/userContext';
 
 export default function Register() {
   const router = useRouter();
   const { setIsLoggedIn } = useContext(UserContext);
 
-  const [hasAccount, setHasAccount] = useState(false);
+  const [invalid, setInvalid] = useState(false);
   const [formData, setFormData] = useState({
-    name: '',
     email: '',
     password: '',
   });
@@ -23,17 +22,16 @@ export default function Register() {
   const submitHandler = async (e) => {
     e.preventDefault();
     setIsWorking(true);
-
     try {
-      const response = await createUserAccount(formData);
+      const response = await loginUser(formData);
       setIsLoggedIn(true);
       router.push('/dashboard');
     } catch (error) {
       if (
         error.message ===
-        'A user with the same email already exists in your project.'
+        'Invalid credentials. Please check the email and password.'
       )
-        setHasAccount(true);
+        setInvalid(true);
     } finally {
       setIsWorking(false);
     }
@@ -54,28 +52,16 @@ export default function Register() {
       <div className="bg-slate-50 rounded-lg w-80 md:w-96">
         <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
           <h1 className="text-3xl flex justify-center font-bold leading-tight tracking-tight text-mejbaan ">
-            Register
+            Login
           </h1>
           <form className="space-y-4 md:space-y-6" onSubmit={submitHandler}>
-            <div>
-              <label
-                htmlFor="name"
-                className="block mb-2 text-sm font-medium text-mejbaan"
-              >
-                Name
-              </label>
-              <input
-                value={formData.name}
-                onChange={changeHandler}
-                type="text"
-                name="name"
-                id="name"
-                className="bg-gray-50 border  text-mejbaan sm:text-sm rounded-lg focus:ring-primary-600 block w-full p-2.5 "
-                placeholder="Bruce Wayne"
-                required
-              />
-            </div>
-
+            {invalid && (
+              <div>
+                <p className="text-red-500 text-center">
+                  Wrong Email or Password!
+                </p>
+              </div>
+            )}
             <div>
               <label
                 htmlFor="email"
@@ -94,11 +80,6 @@ export default function Register() {
                 placeholder="name@company.com"
                 required
               />
-              {hasAccount && (
-                <div>
-                  <p className="text-red-500">Email already in use !</p>
-                </div>
-              )}
             </div>
             <div>
               <label
@@ -133,17 +114,17 @@ export default function Register() {
               {isWorking ? (
                 <span className="loading loading-spinner"></span>
               ) : (
-                <span className="text-lg">Create Account</span>
+                <span className="text-lg">Let Me In</span>
               )}
             </button>
           </form>
           <p className="text-sm font-light text-mejbaan ">
-            Already have an account?
+            Don&apos;t have an account?
             <Link
-              href="/login"
+              href="/register"
               className="font-medium text-primary-600 hover:underline pl-1"
             >
-              Login here
+              Register here
             </Link>
           </p>
         </div>
