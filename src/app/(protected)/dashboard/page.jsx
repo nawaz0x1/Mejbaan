@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import Menubar from '@/components/Menubar';
 
-export default function page() {
+export default function Dashboard() {
   const [menu, setMenu] = useState('find');
   return (
     <>
