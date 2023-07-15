@@ -1,7 +1,13 @@
 'use client';
 
-import React from 'react';
+import { useState } from 'react';
+import Menubar from '@/components/Menubar';
 
 export default function page() {
-  return <div>page</div>;
+  const [menu, setMenu] = useState('find');
+  return (
+    <>
+      <Menubar menu={menu} setMenu={setMenu} />
+    </>
+  );
 }
