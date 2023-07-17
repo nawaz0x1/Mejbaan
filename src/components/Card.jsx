@@ -66,7 +66,7 @@ export default function Card() {
             </div>
             <div className="flex justify-between">
               <div className="text-mejbaan">
-                <h2 className="text-lg font-bold pl-3">{provider}</h2>
+                <h2 className="text-lg font-semibold pl-3">{provider}</h2>
               </div>
             </div>
             <div className="text-mejbaan pt-1 pb-1">
