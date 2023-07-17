@@ -10,7 +10,11 @@ export default function Logout() {
   return (
     <div
       onClick={async () => {
-        await logoutUser();
+        try {
+          await logoutUser();
+        } catch (error) {
+          console.log(error);
+        }
         setIsLoggedIn(false);
       }}
     >
