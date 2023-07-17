@@ -1,3 +1,4 @@
+import PhoneIcon from '@/assets/PhoneIcon';
 import { useState } from 'react';
 
 export default function Card() {
@@ -10,10 +11,19 @@ export default function Card() {
     address: '123 Fake St, Gotham City, New York 2312',
     availability: '10:30 PM 12/12/2024',
     quantity: 100,
+    phone: '123-456-7890',
   };
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const { item, provider, imgUrl, location, address, availability, quantity } =
-    data;
+  const {
+    item,
+    provider,
+    imgUrl,
+    location,
+    address,
+    availability,
+    quantity,
+    phone,
+  } = data;
   return (
     <>
       <div
@@ -44,7 +54,7 @@ export default function Card() {
       >
         <form method="dialog" className="modal-box">
           <div className="flex flex-col">
-            <div>
+            <div className="">
               <img
                 className="w-96 md:w-full h-52 object-cover rounded-xl"
                 src={imgUrl}
@@ -52,15 +62,24 @@ export default function Card() {
               />
             </div>
             <div className="text-mejbaan mt-2">
-              <p className="font-thin">Item</p>
-              <h2 className="text-2xl font-bold pl-3">{item}</h2>
+              <h2 className="text-2xl font-bold">{item}</h2>
             </div>
             <div className="flex justify-between">
               <div className="text-mejbaan">
-                <p className="font-thin">Provider</p>
-                <h2 className="text-xl font-bold pl-3">{provider}</h2>
+                <h2 className="text-lg font-bold pl-3">{provider}</h2>
               </div>
             </div>
+            <div className="text-mejbaan pt-1 pb-1">
+              <div className="flex gap-2 text-xl">
+                <span className="pt-1">
+                  <PhoneIcon />
+                </span>
+                <span>
+                  <a href={`tel:${phone}`}>{phone}</a>
+                </span>
+              </div>
+            </div>
+
             <div className="flex justify-between">
               <div className="flex flex-col text-mejbaan ">
                 <p className="font-thin">Available till</p>
