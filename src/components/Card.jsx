@@ -108,10 +108,15 @@ export default function Card({ data }) {
           <div className="modal-action flex justify-between">
             <button
               className="btn bg-mejbaanDark text-white hover:bg-mejbaanLite"
-              onClick={() => setIsModalOpen(false)}
+              onClick={() => {
+                const url = `https://www.google.com/maps/place/${gpsLatitude},${gpsLongitude}`;
+                window.open(url, '_blank');
+                setIsModalOpen(false);
+              }}
             >
               Show in Map
             </button>
+
             {/* if there is a button in form, it will close the modal */}
             <button
               className="btn bg-mejbaanDark text-white hover:bg-mejbaanLite"
