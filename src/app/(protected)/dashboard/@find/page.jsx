@@ -34,7 +34,9 @@ export default function Find() {
 
   const getGpsLocation = () => {
     try {
-      watchID = navigator.geolocation.watchPosition(gpsHandler);
+      watchID = navigator.geolocation.watchPosition(gpsHandler, () =>
+        setGpsError(true)
+      );
     } catch (e) {
       setGpsError(true);
     }
@@ -44,6 +46,7 @@ export default function Find() {
     getGpsLocation();
     return () => {
       if (watchID) navigator.geolocation.clearWatch(watchID);
+      setGpsError(false);
     };
   }, []);
 

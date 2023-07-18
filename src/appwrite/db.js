@@ -21,6 +21,5 @@ export const getFoodData = async (latitude, longitude) => {
     filters
   );
 
-  console.log(response);
   return response;
 };
