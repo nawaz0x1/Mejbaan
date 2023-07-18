@@ -1,17 +1,7 @@
 'use client';
 
-import LogoutIcon from '@/assets/LogoutIcon';
-import SettingsIcon from '@/assets/SettingsIcon';
-import Logo from '@/assets/appLogo.png';
 import SearchIcon from '@/assets/SearchIcon';
 import ProviderIcon from '@/assets/ProviderIcon';
-import MapIcon from '@/assets/MapIcon';
-import Image from 'next/image';
-import Logout from './Logout';
-import { UserContext } from '@/context/userContext';
-import { useContext } from 'react';
-import SettingsButton from './SettingsButton';
-import LogoComponent from './LogoComponent';
 
 export default function MenuButtons({ menu, setMenu }) {
   return (

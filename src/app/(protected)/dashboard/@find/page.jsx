@@ -22,7 +22,7 @@ export default function Find() {
   } = useContext(DataContext);
 
   const fetchData = async () => {
-    const { documents } = await getFoodData();
+    const { documents } = await getFoodData(coordinates[0], coordinates[1]);
     setRawData(documents);
   };
 
@@ -41,28 +41,32 @@ export default function Find() {
   };
 
   useEffect(() => {
-    fetchData();
     getGpsLocation();
-
     return () => {
       if (watchID) navigator.geolocation.clearWatch(watchID);
     };
   }, []);
 
   useEffect(() => {
+    fetchData();
+  }, [coordinates]);
+
+  useEffect(() => {
     const formatedData = rawData.filter((data) => {
       const { gpsLatitude, gpsLongitude } = data;
+
       return (
         calculateDistance(
           gpsLatitude,
           gpsLongitude,
           coordinates[0],
           coordinates[1]
-        ) <= range
+        ) <= Number(range)
       );
     });
+
     setData(formatedData);
-  }, [range, coordinates, rawData]);
+  }, [range, rawData]);
 
   if (gpsError)
     return (
