@@ -27,7 +27,6 @@ export default function Find() {
   };
 
   let watchID = null;
-
   const gpsHandler = ({ coords }) => {
     const { latitude, longitude } = coords;
     setCoordinates([latitude, longitude]);

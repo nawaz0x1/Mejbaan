@@ -21,7 +21,9 @@ export default function Card({ data }) {
     quantity,
     phone,
   } = data;
+
   availability = timeFormaterDBtoDisplay(availability);
+
   const distance = calculateDistance(
     gpsLatitude,
     gpsLongitude,
@@ -117,7 +119,6 @@ export default function Card({ data }) {
               Show in Map
             </button>
 
-            {/* if there is a button in form, it will close the modal */}
             <button
               className="btn bg-mejbaanDark text-white hover:bg-mejbaanLite"
               onClick={() => setIsModalOpen(false)}
