@@ -1,29 +1,34 @@
-import PhoneIcon from '@/assets/PhoneIcon';
-import { useState } from 'react';
+'use client';
 
-export default function Card() {
-  const data = {
-    item: 'Chicken',
-    provider: 'Mr. Bruce Wayne',
-    imgUrl:
-      'https://images.pexels.com/photos/1624487/pexels-photo-1624487.jpeg',
-    location: [0.0, 0.0],
-    address: '123 Fake St, Gotham City, New York 2312',
-    availability: '10:30 PM 12/12/2024',
-    quantity: 100,
-    phone: '123-456-7890',
-  };
+import PhoneIcon from '@/assets/PhoneIcon';
+import { useState, useContext } from 'react';
+import { timeFormaterDBtoDisplay, calculateDistance } from '@/utils/utils';
+import { DataContext } from '@/context/dataContext';
+
+export default function Card({ data }) {
+  const { coordinates } = useContext(DataContext);
+
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const {
+
+  let {
     item,
     provider,
     imgUrl,
-    location,
     address,
+    gpsLatitude,
+    gpsLongitude,
     availability,
     quantity,
     phone,
   } = data;
+  availability = timeFormaterDBtoDisplay(availability);
+  const distance = calculateDistance(
+    gpsLatitude,
+    gpsLongitude,
+    coordinates[0],
+    coordinates[1]
+  );
+
   return (
     <>
       <div
@@ -43,7 +48,7 @@ export default function Card() {
             <h3 className="text-xl font-semibold">{provider}</h3>
           </div>
           <div className="badge bg-mejbaanLite m-2 text-white font-semibold">
-            2 KM
+            {distance} KM
           </div>
         </div>
       </div>
@@ -96,7 +101,7 @@ export default function Card() {
                 <h2 className="text-lg pl-3">{address}</h2>
               </div>
               <div className="badge bg-mejbaanLite mt-5 text-white font-semibold">
-                2KM
+                {distance} KM
               </div>
             </div>
           </div>

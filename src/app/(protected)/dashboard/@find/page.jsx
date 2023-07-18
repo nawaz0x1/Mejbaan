@@ -1,10 +1,92 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
+import { DataContext } from '@/context/dataContext';
 import Card from '@/components/Card';
+import { getFoodData } from '@/appwrite/db';
+import { v4 as uuidv4 } from 'uuid';
+import { calculateDistance } from '@/utils/utils';
 
 export default function Find() {
-  const [range, setRange] = useState(5);
+  const [gpsError, setGpsError] = useState(false);
+
+  const {
+    range,
+    setRange,
+    data,
+    setData,
+    coordinates,
+    setCoordinates,
+    rawData,
+    setRawData,
+  } = useContext(DataContext);
+
+  const fetchData = async () => {
+    const { documents } = await getFoodData();
+    setRawData(documents);
+  };
+
+  let watchID = null;
+
+  const gpsHandler = ({ coords }) => {
+    const { latitude, longitude } = coords;
+    setCoordinates([latitude, longitude]);
+  };
+
+  const getGpsLocation = () => {
+    try {
+      watchID = navigator.geolocation.watchPosition(gpsHandler);
+    } catch (e) {
+      setGpsError(true);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+    getGpsLocation();
+
+    return () => {
+      if (watchID) navigator.geolocation.clearWatch(watchID);
+    };
+  }, []);
+
+  useEffect(() => {
+    const formatedData = rawData.filter((data) => {
+      const { gpsLatitude, gpsLongitude } = data;
+      return (
+        calculateDistance(
+          gpsLatitude,
+          gpsLongitude,
+          coordinates[0],
+          coordinates[1]
+        ) <= range
+      );
+    });
+    setData(formatedData);
+  }, [range, coordinates, rawData]);
+
+  if (gpsError)
+    return (
+      <div>
+        <div className="alert alert-error">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="stroke-current shrink-0 h-6 w-6"
+            fill="none"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"
+            />
+          </svg>
+          <span>Error! This Application cannot run without GPS</span>
+        </div>
+      </div>
+    );
+
   return (
     <>
       <section className="container">
@@ -21,17 +103,14 @@ export default function Find() {
             onChange={(e) => {
               const { value } = e.target;
               setRange(value);
-              console.log(value);
             }}
           />
         </div>
       </section>
       <section>
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
+        {data.map((itemInfo) => (
+          <Card key={uuidv4()} data={itemInfo} />
+        ))}
       </section>
     </>
   );

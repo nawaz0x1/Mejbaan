@@ -3,7 +3,7 @@ import { Client, Account, ID } from 'appwrite';
 const endpoint = process.env.NEXT_PUBLIC_ENDPOINT;
 const projectId = process.env.NEXT_PUBLIC_PROJECT_ID;
 
-const client = new Client().setEndpoint(endpoint).setProject(projectId);
+export const client = new Client().setEndpoint(endpoint).setProject(projectId);
 
 const account = new Account(client);
 
