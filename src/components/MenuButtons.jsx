@@ -52,24 +52,6 @@ export default function MenuButtons({ menu, setMenu }) {
             </h2>
           </div>
         </div>
-
-        <div
-          className={
-            menu === 'map'
-              ? 'bg-white rounded-2xl'
-              : 'hover:bg-mejbaanDark rounded-2xl'
-          }
-          onClick={() => setMenu('map')}
-        >
-          <div className="flex p-1">
-            <span className="p-1">
-              <MapIcon color={menu === 'map' ? 'mejbaan' : 'white'} />
-            </span>
-            <h2 className="text-mejbaan pr-1">
-              <span className={menu !== 'map' && 'hidden'}>Map</span>
-            </h2>
-          </div>
-        </div>
       </div>
     </div>
   );

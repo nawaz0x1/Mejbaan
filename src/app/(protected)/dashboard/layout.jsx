@@ -7,10 +7,7 @@ import { DataContextProvider } from '@/context/dataContext';
 export default function Dashboard({ find, map, provide }) {
   const [menu, setMenu] = useState('find');
 
-  let item;
-  if (menu === 'find') item = find;
-  else if (menu === 'map') item = map;
-  else item = provide;
+  let item = menu === 'find' ? find : provide;
 
   return (
     <>

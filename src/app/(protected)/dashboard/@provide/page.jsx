@@ -1,4 +1,4 @@
-import React from 'react';
+'use client';
 
 export default function Provide() {
   return <div>Provide</div>;
