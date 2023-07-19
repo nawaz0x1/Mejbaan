@@ -21,6 +21,8 @@ export default function Find() {
     setRawData,
   } = useContext(DataContext);
 
+  const gpsUsable = coordinates[0] === 0 ? false : true;
+
   const fetchData = async () => {
     const { documents } = await getFoodData(coordinates[0], coordinates[1]);
     setRawData(documents);
@@ -34,10 +36,12 @@ export default function Find() {
 
   const getGpsLocation = () => {
     try {
-      watchID = navigator.geolocation.watchPosition(gpsHandler, () =>
-        setGpsError(true)
-      );
+      watchID = navigator.geolocation.watchPosition(gpsHandler, (e) => {
+        console.log(e);
+        setGpsError(true);
+      });
     } catch (e) {
+      console.log(e);
       setGpsError(true);
     }
   };
@@ -51,8 +55,9 @@ export default function Find() {
   }, []);
 
   useEffect(() => {
+    console.log('working');
     fetchData();
-  }, [coordinates]);
+  }, [gpsUsable]);
 
   useEffect(() => {
     const formatedData = rawData.filter((data) => {
