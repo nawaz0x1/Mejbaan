@@ -27,6 +27,7 @@ export default function Find() {
   };
 
   const gpsHandler = ({ coords }) => {
+    setGpsError(false);
     const { latitude, longitude } = coords;
     setCoordinates([latitude, longitude]);
   };
@@ -34,11 +35,13 @@ export default function Find() {
   const getGpsLocation = () => {
     try {
       navigator.geolocation.getCurrentPosition(gpsHandler, () => {
+        setGpsError(true);
         setTimeout(getGpsLocation, 3000);
       });
     } catch (e) {
       setGpsError(true);
     }
+    setTimeout(getGpsLocation, 10 * 60 * 1000);
   };
 
   useEffect(() => {
@@ -46,6 +49,7 @@ export default function Find() {
   }, []);
 
   useEffect(() => {
+    if (JSON.stringify(coordinates) === JSON.stringify([0, 0])) return;
     fetchData();
   }, [coordinates]);
 
