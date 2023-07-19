@@ -49,7 +49,7 @@ export default function Card({ data }) {
             <h2 className="text-2xl font-bold">{item}</h2>
             <h3 className="text-xl font-semibold">{provider}</h3>
           </div>
-          <div className="badge bg-mejbaanLite m-2 text-white font-semibold">
+          <div className="badge bg-mejbaanLite m-2 text-white font-semibold whitespace-nowrap">
             {distance} KM
           </div>
         </div>
@@ -97,12 +97,12 @@ export default function Card({ data }) {
                 <h2 className="text-lg">{quantity}</h2>
               </div>
             </div>
-            <div className="flex justify-between gap-3">
+            <div className="flex justify-between">
               <div className="flex flex-col text-mejbaan ">
                 <p className="font-thin">Address</p>
                 <h2 className="text-lg pl-3">{address}</h2>
               </div>
-              <div className="badge bg-mejbaanLite mt-5 text-white font-semibold">
+              <div className="badge bg-mejbaanLite mt-5 text-white font-semibold rounded-3xl whitespace-nowrap">
                 {distance} KM
               </div>
             </div>
