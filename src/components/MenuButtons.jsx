@@ -20,7 +20,7 @@ export default function MenuButtons({ menu, setMenu }) {
               <SearchIcon color={menu === 'find' ? 'mejbaan' : 'white'} />
             </span>
             <h2 className="text-mejbaan pr-1">
-              <span className={menu !== 'find' && 'hidden'}>Find</span>
+              <span className={menu !== 'find' && 'text-white'}>Find</span>
             </h2>
           </div>
         </div>
@@ -38,7 +38,9 @@ export default function MenuButtons({ menu, setMenu }) {
               <ProviderIcon color={menu === 'provide' ? 'mejbaan' : 'white'} />
             </span>
             <h2 className="text-mejbaan pr-1">
-              <span className={menu !== 'provide' && 'hidden'}>Provide</span>
+              <span className={menu !== 'provide' && 'text-white'}>
+                Provide
+              </span>
             </h2>
           </div>
         </div>

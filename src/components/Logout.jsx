@@ -19,7 +19,7 @@ export default function Logout() {
       }}
     >
       <div
-        className="hover:bg-mejbaanDark rounded-lg p-1 pt-2 pb-2 sm:p-2 tooltip tooltip-bottom"
+        className="hover:bg-mejbaanDark rounded-lg p-1 pt-2 pb-2 sm:p-1 tooltip tooltip-bottom"
         data-tip="Logout"
       >
         <LogoutIcon />
