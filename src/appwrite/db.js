@@ -34,7 +34,6 @@ export const addItemAsProvider = async (data) => {
     );
     return response;
   } catch (error) {
-    console.log(error);
     throw new Error(error);
   }
 };
@@ -49,7 +48,6 @@ export const getProvidedItems = async () => {
       '64b23ae8e6e6cf713222',
       filters
     );
-    console.log(response);
     return response;
   } catch (error) {
     throw new Error(error);
@@ -75,7 +73,6 @@ export const getItemInfo = async (id) => {
       '64b23ae8e6e6cf713222',
       id
     );
-    console.log('getiing info', response);
     return response;
   } catch (error) {
     throw new Error(error);

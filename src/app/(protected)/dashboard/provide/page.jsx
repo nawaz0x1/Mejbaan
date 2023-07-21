@@ -10,7 +10,6 @@ export default function Provide() {
 
   const fetcher = async () => {
     const items = await getProvidedItems();
-    console.log(items.documents);
     setData(items.documents);
   };
 

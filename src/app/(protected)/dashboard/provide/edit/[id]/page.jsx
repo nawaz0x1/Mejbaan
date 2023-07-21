@@ -13,7 +13,6 @@ export default function Edit({ params }) {
 
   const fetcher = async () => {
     const response = await getItemInfo(id);
-    console.log(response);
     setData(response);
   };
 
@@ -27,11 +26,13 @@ export default function Edit({ params }) {
   };
   const submitHandler = async (e) => {
     e.preventDefault();
+    setSending(true);
     try {
       await updateItemInfo(id, objectCleaner(data));
+      setSending(false);
       router.push('/dashboard/provide');
     } catch (error) {
-      console.log(error);
+      throw new Error(error);
     }
   };
 
@@ -191,7 +192,7 @@ export default function Edit({ params }) {
             {sending ? (
               <span className="loading loading-spinner"></span>
             ) : (
-              <span className="text-lg">Submit</span>
+              <span className="text-lg">Update</span>
             )}
           </button>
         </div>

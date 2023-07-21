@@ -4,6 +4,7 @@ import LogoutIcon from '@/assets/LogoutIcon';
 import { logoutUser } from '@/appwrite/utils';
 import { UserContext } from '@/context/userContext';
 import { useContext } from 'react';
+import { Erica_One } from 'next/font/google';
 
 export default function Logout() {
   const { setIsLoggedIn } = useContext(UserContext);
@@ -13,7 +14,7 @@ export default function Logout() {
         try {
           await logoutUser();
         } catch (error) {
-          console.log(error);
+          throw new Error(error);
         }
         setIsLoggedIn(false);
       }}

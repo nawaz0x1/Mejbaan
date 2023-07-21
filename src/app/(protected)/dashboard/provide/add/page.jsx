@@ -5,7 +5,6 @@ import { DataContext } from '@/context/dataContext';
 import { imageUpload, getUser } from '@/appwrite/utils';
 import { addItemAsProvider } from '@/appwrite/db';
 import { useRouter } from 'next/navigation';
-import { v4 as uuidv4 } from 'uuid';
 import SadFace from '@/assets/sadFace.png';
 import Image from 'next/image';
 
@@ -31,7 +30,6 @@ export default function AddItem() {
 
   const changeHandler = (e) => {
     const { id, value } = e.target;
-    console.log(formData);
     setFormData({ ...formData, [id]: value });
   };
 
@@ -65,14 +63,9 @@ export default function AddItem() {
     } = formData;
     const address = `${address1}, ${address2}, ${city} ${zipCode}`;
     const userData = await getUser();
-    const [provider, providerID, itemID] = [
-      userData.name,
-      userData.$id,
-      uuidv4(),
-    ];
+    const [provider, providerID] = [userData.name, userData.$id];
     const data = {
       item,
-      itemID,
       provider,
       providerID,
       quantity,

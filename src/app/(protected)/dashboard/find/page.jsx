@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState, useContext } from 'react';
+import { useEffect, useContext } from 'react';
 import { DataContext } from '@/context/dataContext';
 import Card from '@/components/Card';
 import { getFoodData } from '@/appwrite/db';
