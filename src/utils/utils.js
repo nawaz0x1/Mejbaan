@@ -46,3 +46,13 @@ export const timeFormaterDBtoDisplay = (timestamp) => {
 
   return formattedString;
 };
+
+export const objectCleaner = (obj) => {
+  const newObj = {};
+  for (const key in obj) {
+    if (!key.startsWith('$')) {
+      newObj[key] = obj[key];
+    }
+  }
+  return newObj;
+};

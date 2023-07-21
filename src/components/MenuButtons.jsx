@@ -6,13 +6,9 @@ import ProviderIcon from '@/assets/ProviderIcon';
 export default function MenuButtons({ menu, setMenu }) {
   return (
     <div>
-      <div className="flex border border-white rounded-3xl p-1 mt-2 mb-2 text-xl">
+      <div className="flex border border-white rounded-3xl p-1 mt-2 mb-2 text-xl cursor-pointer">
         <div
-          className={
-            menu === 'find'
-              ? 'bg-white rounded-2xl'
-              : 'hover:bg-mejbaanDark rounded-2xl'
-          }
+          className={`rounded-2xl ${menu === 'find' && 'bg-white'}`}
           onClick={() => setMenu('find')}
         >
           <div className="flex p-1">
@@ -26,11 +22,7 @@ export default function MenuButtons({ menu, setMenu }) {
         </div>
 
         <div
-          className={
-            menu === 'provide'
-              ? 'bg-white rounded-2xl'
-              : 'hover:bg-mejbaanDark rounded-2xl'
-          }
+          className={`rounded-2xl ${menu === 'provide' && 'bg-white'}`}
           onClick={() => setMenu('provide')}
         >
           <div className="flex p-1">

@@ -1,15 +1,29 @@
 'use client';
 
-import ProviderCard from '@/components/ProviderCard';
-import { useEffect } from 'react';
-import { getUser } from '@/appwrite/utils';
+import { useEffect, useState } from 'react';
+import { getProvidedItems } from '@/appwrite/db';
 import Link from 'next/link';
+import ProviderCard from '@/components/ProviderCard';
 
 export default function Provide() {
+  const [data, setData] = useState([]);
+
+  const fetcher = async () => {
+    const items = await getProvidedItems();
+    console.log(items.documents);
+    setData(items.documents);
+  };
+
+  useEffect(() => {
+    fetcher();
+  }, []);
+
   return (
     <main className="flex  flex-col items-center mx-auto gap-3">
       <section>
-        <ProviderCard />
+        {data.map((item) => {
+          return <ProviderCard key={item.itemID} data={item} />;
+        })}
       </section>
       <section>
         <Link href={'/dashboard/provide/add'}>

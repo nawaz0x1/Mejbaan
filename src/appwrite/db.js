@@ -1,5 +1,5 @@
 import { Databases, Query, ID } from 'appwrite';
-import { client } from './utils';
+import { client, getUser } from './utils';
 
 const databases = new Databases(client);
 
@@ -21,8 +21,6 @@ export const getFoodData = async (latitude, longitude) => {
     filters
   );
 
-  console.log(response);
-
   return response;
 };
 
@@ -37,6 +35,62 @@ export const addItemAsProvider = async (data) => {
     return response;
   } catch (error) {
     console.log(error);
+    throw new Error(error);
+  }
+};
+
+export const getProvidedItems = async () => {
+  try {
+    const userData = await getUser();
+    const filters = [Query.equal('providerID', [userData.$id])];
+
+    const response = await databases.listDocuments(
+      '64b23ab6219288dd6e2b',
+      '64b23ae8e6e6cf713222',
+      filters
+    );
+    console.log(response);
+    return response;
+  } catch (error) {
+    throw new Error(error);
+  }
+};
+
+export const deleteItem = async (id) => {
+  try {
+    const response = await databases.deleteDocument(
+      '64b23ab6219288dd6e2b',
+      '64b23ae8e6e6cf713222',
+      id
+    );
+  } catch (error) {
+    throw new Error(error);
+  }
+};
+
+export const getItemInfo = async (id) => {
+  try {
+    const response = await databases.getDocument(
+      '64b23ab6219288dd6e2b',
+      '64b23ae8e6e6cf713222',
+      id
+    );
+    console.log('getiing info', response);
+    return response;
+  } catch (error) {
+    throw new Error(error);
+  }
+};
+
+export const updateItemInfo = async (id, data) => {
+  try {
+    const promise = await databases.updateDocument(
+      '64b23ab6219288dd6e2b',
+      '64b23ae8e6e6cf713222',
+      id,
+      data
+    );
+  } catch (error) {
     throw new Error(error);
   }
 };

@@ -1,11 +1,13 @@
 'use client';
 
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useState } from 'react';
 import { DataContext } from '@/context/dataContext';
 import { imageUpload, getUser } from '@/appwrite/utils';
 import { addItemAsProvider } from '@/appwrite/db';
 import { useRouter } from 'next/navigation';
 import { v4 as uuidv4 } from 'uuid';
+import SadFace from '@/assets/sadFace.png';
+import Image from 'next/image';
 
 export default function AddItem() {
   const router = useRouter();
@@ -25,7 +27,7 @@ export default function AddItem() {
 
   const [image, setImage] = useState();
   const [error, setError] = useState(false);
-  const [sending, isSending] = useState(false);
+  const [sending, setSending] = useState(false);
 
   const changeHandler = (e) => {
     const { id, value } = e.target;
@@ -48,6 +50,7 @@ export default function AddItem() {
 
   const submitHandler = async (e) => {
     e.preventDefault();
+    setSending(true);
     const imgUrl = await imageUploader();
     const {
       item,
@@ -76,8 +79,8 @@ export default function AddItem() {
       imgUrl,
       phone,
       address,
-      gpsLatitude,
-      gpsLongitude,
+      gpsLatitude: Number(gpsLatitude),
+      gpsLongitude: Number(gpsLongitude),
     };
 
     try {
@@ -86,7 +89,16 @@ export default function AddItem() {
     } catch (error) {
       setError(true);
     }
+    setSending(false);
   };
+
+  if (error)
+    return (
+      <div className="w-10/12 max-w-sm h-40 bg-white rounded-xl flex flex-col justify-center items-center">
+        <Image src={SadFace} alt="error" height={60} />
+        <h2 className="font-semibold text-red-500">Something went wrong !</h2>
+      </div>
+    );
 
   return (
     <main>
@@ -294,9 +306,13 @@ export default function AddItem() {
         <div className="flex justify-center">
           <button
             type="submit"
-            className="text-white bg-mejbaan hover:bg-mejbaanDark font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+            className="btn btn-wide text-white bg-mejbaan hover:bg-mejbaanDark font-medium rounded-lg text-sm px-5 py-2.5 text-center"
           >
-            Submit
+            {sending ? (
+              <span className="loading loading-spinner"></span>
+            ) : (
+              <span className="text-lg">Submit</span>
+            )}
           </button>
         </div>
       </form>
