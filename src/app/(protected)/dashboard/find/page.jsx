@@ -8,45 +8,21 @@ import { v4 as uuidv4 } from 'uuid';
 import { calculateDistance } from '@/utils/utils';
 
 export default function Find() {
-  const [gpsError, setGpsError] = useState(false);
-
   const {
     range,
     setRange,
     data,
     setData,
     coordinates,
-    setCoordinates,
     rawData,
     setRawData,
+    gpsError,
   } = useContext(DataContext);
 
   const fetchData = async () => {
     const { documents } = await getFoodData(coordinates[0], coordinates[1]);
     setRawData(documents);
   };
-
-  const gpsHandler = ({ coords }) => {
-    setGpsError(false);
-    const { latitude, longitude } = coords;
-    setCoordinates([latitude, longitude]);
-  };
-
-  const getGpsLocation = () => {
-    try {
-      navigator.geolocation.getCurrentPosition(gpsHandler, () => {
-        setGpsError(true);
-        setTimeout(getGpsLocation, 3000);
-      });
-    } catch (e) {
-      setGpsError(true);
-    }
-    setTimeout(getGpsLocation, 10 * 60 * 1000);
-  };
-
-  useEffect(() => {
-    getGpsLocation();
-  }, []);
 
   useEffect(() => {
     if (JSON.stringify(coordinates) === JSON.stringify([0, 0])) return;

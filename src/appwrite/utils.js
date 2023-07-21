@@ -1,4 +1,5 @@
-import { Client, Account, ID } from 'appwrite';
+import { Client, Account, ID, Storage } from 'appwrite';
+import { v4 as uuidv4 } from 'uuid';
 
 const endpoint = process.env.NEXT_PUBLIC_ENDPOINT;
 const projectId = process.env.NEXT_PUBLIC_PROJECT_ID;
@@ -47,4 +48,20 @@ export const logoutUser = async (sessionID = 'current') => {
 export const isUserLoggedIn = async () => {
   const user = await getUser();
   return Boolean(user);
+};
+
+export const imageUpload = async (file) => {
+  const storage = new Storage(client);
+  try {
+    const response = await storage.createFile(
+      '64ba52bacf4ecb0a05bf',
+      uuidv4(),
+      file
+    );
+    const { $id, bucketId } = response;
+    const result = storage.getFilePreview(bucketId, $id);
+    return result.href;
+  } catch (error) {
+    throw new Error(error);
+  }
 };

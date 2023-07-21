@@ -17,9 +17,10 @@ export default function Logout() {
         }
         setIsLoggedIn(false);
       }}
+      className="flex justify-center m-2 sm:mr-1"
     >
       <div
-        className="hover:bg-mejbaanDark rounded-lg p-1 pt-2 pb-2 sm:p-1 tooltip tooltip-bottom"
+        className="hover:bg-mejbaanDark rounded-lg p-2 text-2xl"
         data-tip="Logout"
       >
         <LogoutIcon />

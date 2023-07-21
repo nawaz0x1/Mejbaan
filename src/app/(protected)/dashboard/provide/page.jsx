@@ -1,6 +1,9 @@
 'use client';
 
 import ProviderCard from '@/components/ProviderCard';
+import { useEffect } from 'react';
+import { getUser } from '@/appwrite/utils';
+import Link from 'next/link';
 
 export default function Provide() {
   return (
@@ -9,7 +12,9 @@ export default function Provide() {
         <ProviderCard />
       </section>
       <section>
-        <button className="btn text-mejbaan bg-white">Add Item</button>
+        <Link href={'/dashboard/provide/add'}>
+          <button className="btn text-mejbaan bg-white">Add Item</button>
+        </Link>
       </section>
     </main>
   );

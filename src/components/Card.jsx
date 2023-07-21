@@ -75,6 +75,10 @@ export default function Card({ data }) {
               <div className="text-mejbaan">
                 <h2 className="text-lg font-semibold pl-3">{provider}</h2>
               </div>
+              <div className="flex flex-col text-mejbaan ">
+                <p className="font-thin">Quantity</p>
+                <h2 className="text-lg">{quantity}</h2>
+              </div>
             </div>
             <div className="text-mejbaan pt-1 pb-1">
               <div className="flex gap-2 text-xl">
@@ -87,16 +91,7 @@ export default function Card({ data }) {
               </div>
             </div>
 
-            <div className="flex justify-between">
-              <div className="flex flex-col text-mejbaan ">
-                <p className="font-thin">Available till</p>
-                <h2 className="text-lg pl-3">{availability}</h2>
-              </div>
-              <div className="flex flex-col text-mejbaan ">
-                <p className="font-thin">Quantity</p>
-                <h2 className="text-lg">{quantity}</h2>
-              </div>
-            </div>
+            <div className="flex justify-between"></div>
             <div className="flex justify-between">
               <div className="flex flex-col text-mejbaan ">
                 <p className="font-thin">Address</p>

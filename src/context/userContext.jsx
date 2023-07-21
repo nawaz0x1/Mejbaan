@@ -11,6 +11,7 @@ export const UserContext = createContext({
 export function UserContextProvider({ children }) {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const value = { isLoggedIn, setIsLoggedIn };
+
   useEffect(() => {
     (async () => {
       const response = await isUserLoggedIn();
