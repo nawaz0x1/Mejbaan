@@ -19,7 +19,7 @@ export default function Provide() {
 
   return (
     <main className="flex  flex-col items-center mx-auto gap-3">
-      <section>
+      <section className="container">
         {data.map((item) => {
           return <ProviderCard key={item.itemID} data={item} />;
         })}

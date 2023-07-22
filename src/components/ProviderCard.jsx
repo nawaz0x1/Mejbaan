@@ -8,33 +8,36 @@ import { useState } from 'react';
 export default function ProviderCard({ data }) {
   const router = useRouter();
 
-  const { item, imgUrl, itemID, $id, active } = data;
+  const { item, imgUrl, $id, active } = data;
   const [blank, setBlank] = useState(false);
 
   if (blank) return <></>;
 
   return (
-    <div className="bg-white rounded-lg p-1 flex text-mejbaan justify-between w-fit">
-      <div>
-        <img
-          src={imgUrl}
-          alt={item}
-          className="object-cover h-24 aspect-square rounded-lg"
-        />
+    <div className="flex p-1 bg-white m-5 rounded-xl mx-auto justify-between w-screen sm:max-w-screen-sm shadow-lg">
+      <div className="flex">
+        <div className="sm:p-2">
+          <img
+            src={imgUrl}
+            alt={item}
+            className="object-cover h-24 aspect-square rounded-lg"
+          />
+        </div>
+        <div className="text-mejbaan flex-col justify-between m-2 sm:ml-4">
+          <h2 className="text-xl font-semibold">{item}</h2>
+          {active ? (
+            <div className="badge bg-mejbaan text-white font-semibold mt-4">
+              <span>Active</span>
+            </div>
+          ) : (
+            <div className="badge bg-red-700 text-white font-semibold">
+              <span>Inactive</span>
+            </div>
+          )}
+        </div>
       </div>
-      <div className="m-2 ml-4 flex flex-col gap-1 my-auto">
-        <h2 className="text-xl font-semibold">{item}</h2>
-        {active ? (
-          <div className="badge bg-mejbaan text-white font-semibold">
-            <span>Active</span>
-          </div>
-        ) : (
-          <div className="badge bg-red-700 text-white font-semibold">
-            <span>Inactive</span>
-          </div>
-        )}
-      </div>
-      <div className="my-auto flex gap-2 sm:ml-3">
+
+      <div className="my-auto flex gap-2 sm:mr-3">
         <button
           className="btn bg-mejbaan text-white hover:bg-mejbaanDark p-2"
           onClick={async () => {
@@ -42,7 +45,7 @@ export default function ProviderCard({ data }) {
           }}
         >
           <Image src={PenIcon} width={25} />
-          <span className="hidden sm:inline-flex">Edit</span>
+          <span className="hidden sm:block">Edit</span>
         </button>
         <button
           className="btn bg-red-700 text-white hover:bg-red-800 p-2"
@@ -53,7 +56,7 @@ export default function ProviderCard({ data }) {
           }}
         >
           <Image src={DeleteIcon} width={25} />
-          <span className="hidden sm:inline-flex">Delete</span>
+          <span className="hidden sm:block">Delete</span>
         </button>
       </div>
     </div>

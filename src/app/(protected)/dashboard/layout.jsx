@@ -1,9 +1,10 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import Menubar from '@/components/Menubar';
-import { DataContextProvider } from '@/context/dataContext';
+import { DataContext, DataContextProvider } from '@/context/dataContext';
 import { useRouter } from 'next/navigation';
+import RangeBar from '@/components/RangeBar';
 
 export default function Dashboard({ children }) {
   const router = useRouter();
@@ -15,11 +16,10 @@ export default function Dashboard({ children }) {
   }, [menu]);
 
   return (
-    <>
+    <DataContextProvider>
       <Menubar menu={menu} setMenu={setMenu} />
-      <main className="flex flex-col items-center">
-        <DataContextProvider>{children}</DataContextProvider>
-      </main>
-    </>
+      {menu === 'find' && <RangeBar />}
+      <main className="flex flex-col items-center">{children}</main>
+    </DataContextProvider>
   );
 }

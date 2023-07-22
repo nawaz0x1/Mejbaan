@@ -8,20 +8,16 @@ import { v4 as uuidv4 } from 'uuid';
 import { calculateDistance } from '@/utils/utils';
 
 export default function Find() {
-  const {
-    range,
-    setRange,
-    data,
-    setData,
-    coordinates,
-    rawData,
-    setRawData,
-    gpsError,
-  } = useContext(DataContext);
+  const { range, data, setData, coordinates, rawData, setRawData, gpsError } =
+    useContext(DataContext);
 
   const fetchData = async () => {
     const { documents } = await getFoodData(coordinates[0], coordinates[1]);
-    setRawData(documents);
+    if (documents) {
+      setRawData(documents);
+      return;
+    }
+    setTimeout(fetchData, 3000);
   };
 
   useEffect(() => {
@@ -69,32 +65,10 @@ export default function Find() {
     );
 
   return (
-    <>
-      <section className="container">
-        <div className="bg-white items-center w-screen sm:max-w-screen-sm m-2 flex gap-2 p-1 pl-2 pr-2 rounded-3xl mx-auto">
-          <span className=" text-mejbaan font-semibold">Distance:</span>
-
-          <span className="text-mejbaan font-bold whitespace-nowrap">{`${range} KM`}</span>
-
-          <input
-            type="range"
-            min="1"
-            max="20"
-            step="1"
-            value={range}
-            className="range range-accent-focus w-5/6 pl-2"
-            onChange={(e) => {
-              const { value } = e.target;
-              setRange(value);
-            }}
-          />
-        </div>
-      </section>
-      <section>
-        {data.map((itemInfo) => (
-          <Card key={uuidv4()} data={itemInfo} />
-        ))}
-      </section>
-    </>
+    <section className="">
+      {data.map((itemInfo) => (
+        <Card key={uuidv4()} data={itemInfo} />
+      ))}
+    </section>
   );
 }

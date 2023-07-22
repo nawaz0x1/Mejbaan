@@ -4,12 +4,15 @@ import { useEffect, useState } from 'react';
 import { getItemInfo, updateItemInfo } from '@/appwrite/db';
 import { useRouter } from 'next/navigation';
 import { objectCleaner } from '@/utils/utils';
+import Image from 'next/image';
+import SadFace from '@/assets/sadFace.png';
 
 export default function Edit({ params }) {
   const { id } = params;
   const router = useRouter();
   const [data, setData] = useState({});
   const [sending, setSending] = useState(false);
+  const [error, setError] = useState(false);
 
   const fetcher = async () => {
     const response = await getItemInfo(id);
@@ -32,9 +35,17 @@ export default function Edit({ params }) {
       setSending(false);
       router.push('/dashboard/provide');
     } catch (error) {
-      throw new Error(error);
+      setError(true);
     }
   };
+
+  if (error)
+    return (
+      <div className="w-10/12 max-w-sm h-40 bg-white rounded-xl flex flex-col justify-center items-center">
+        <Image src={SadFace} alt="error" height={60} />
+        <h2 className="font-semibold text-red-500">Something went wrong !</h2>
+      </div>
+    );
 
   return (
     <main>
