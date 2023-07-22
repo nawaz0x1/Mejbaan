@@ -10,8 +10,11 @@ export function DataContextProvider({ children }) {
   const [rawData, setRawData] = useState([]);
   const [range, setRange] = useState(5);
   const [gpsError, setGpsError] = useState(false);
+  const [menu, setMenu] = useState('find');
 
   const value = {
+    menu,
+    setMenu,
     coordinates,
     setCoordinates,
     data,

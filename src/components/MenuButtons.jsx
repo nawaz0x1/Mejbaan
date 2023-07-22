@@ -2,8 +2,12 @@
 
 import SearchIcon from '@/assets/SearchIcon';
 import ProviderIcon from '@/assets/ProviderIcon';
+import { useContext } from 'react';
+import { DataContext } from '@/context/dataContext';
 
-export default function MenuButtons({ menu, setMenu }) {
+export default function MenuButtons() {
+  const { menu, setMenu } = useContext(DataContext);
+
   return (
     <div>
       <div className="flex border border-white rounded-3xl p-1 mt-2 mb-2 text-xl cursor-pointer">

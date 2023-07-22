@@ -1,3 +1,5 @@
+'use client';
+
 import { DataContext } from '@/context/dataContext';
 import { useContext } from 'react';
 

@@ -1,3 +1,5 @@
+'use client';
+
 import PenIcon from '@/assets/pen.png';
 import DeleteIcon from '@/assets/delete.png';
 import Image from 'next/image';

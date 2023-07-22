@@ -3,6 +3,7 @@
 import { UserContext } from '@/context/userContext';
 import { useContext, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import { DataContextProvider } from '@/context/dataContext';
 
 export default function DashboardLayout({ children }) {
   const router = useRouter();
@@ -13,5 +14,7 @@ export default function DashboardLayout({ children }) {
     if (!isLoggedIn) router.replace('/login');
   });
 
-  return <>{isLoggedIn && children}</>;
+  return (
+    <>{isLoggedIn && <DataContextProvider>{children}</DataContextProvider>}</>
+  );
 }
