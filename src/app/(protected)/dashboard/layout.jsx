@@ -1,8 +1,8 @@
 'use client';
 
-import { useContext, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import Menubar from '@/components/Menubar';
-import { DataContext, DataContextProvider } from '@/context/dataContext';
+import { DataContextProvider } from '@/context/dataContext';
 import { useRouter } from 'next/navigation';
 import RangeBar from '@/components/RangeBar';
 

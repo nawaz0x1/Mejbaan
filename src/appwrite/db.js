@@ -13,6 +13,7 @@ export const getFoodData = async (latitude, longitude) => {
     Query.lessThanEqual('gpsLatitude', latitude + degreeRange),
     Query.greaterThanEqual('gpsLongitude', longitude - degreeRange),
     Query.lessThanEqual('gpsLongitude', longitude + degreeRange),
+    Query.equal('active', [true]),
   ];
 
   const response = await databases.listDocuments(
