@@ -6,7 +6,6 @@ import Card from '@/components/Card';
 import { getFoodData } from '@/appwrite/db';
 import { v4 as uuidv4 } from 'uuid';
 import { calculateDistance } from '@/utils/utils';
-import { usePathname } from 'next/navigation';
 
 export default function Find() {
   const { menu } = useContext(DataContext);
@@ -72,7 +71,8 @@ export default function Find() {
     );
   // Next.js approuter is slow and this hides the Card components during path change
   else if (menu !== 'find') return <></>;
-
+  else if (!data.length)
+    return <span className="mt-5 loading loading-spinner loading-lg"></span>;
   return (
     <section>
       {data.map((itemInfo) => (
