@@ -2,7 +2,7 @@
 
 import PhoneIcon from '@/assets/PhoneIcon';
 import { useState, useContext } from 'react';
-import { timeFormaterDBtoDisplay, calculateDistance } from '@/utils/utils';
+import { calculateDistance } from '@/utils/utils';
 import { DataContext } from '@/context/dataContext';
 
 export default function Card({ data }) {
@@ -21,8 +21,6 @@ export default function Card({ data }) {
     quantity,
     phone,
   } = data;
-
-  availability = timeFormaterDBtoDisplay(availability);
 
   const distance = calculateDistance(
     gpsLatitude,
