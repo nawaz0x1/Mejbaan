@@ -54,14 +54,14 @@ export default function ProviderCard({ data }) {
             router.push(`provide/edit/${$id}`);
           }}
         >
-          <Image src={PenIcon} width={25} />
+          <Image src={PenIcon} width={25} alt="edit" />
           <span className="hidden sm:block">Edit</span>
         </button>
         <button
           className="btn bg-red-700 text-white hover:bg-red-800 p-2"
           onClick={deleteHandler}
         >
-          <Image src={DeleteIcon} width={25} />
+          <Image src={DeleteIcon} width={25} alt="delete" />
           <span className="hidden sm:block">Delete</span>
         </button>
       </div>
