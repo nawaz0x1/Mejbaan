@@ -8,6 +8,7 @@ import ProviderCard from '@/components/ProviderCard';
 export default function Provide() {
   const [data, setData] = useState([]);
 
+  // Gets the items that the user has added
   const fetcher = async () => {
     const items = await getProvidedItems();
     setData(items.documents);

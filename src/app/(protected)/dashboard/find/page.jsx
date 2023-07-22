@@ -11,6 +11,7 @@ export default function Find() {
   const { range, data, setData, coordinates, rawData, setRawData, gpsError } =
     useContext(DataContext);
 
+  // Get Items within the range. If failed, try again in after 3 seconds
   const fetchData = async () => {
     const { documents } = await getFoodData(coordinates[0], coordinates[1]);
     if (documents) {
@@ -21,10 +22,12 @@ export default function Find() {
   };
 
   useEffect(() => {
+    // Doesn't call the function if coordinates are 0,0 (default value which is middle of a ocean)
     if (JSON.stringify(coordinates) === JSON.stringify([0, 0])) return;
     fetchData();
   }, [coordinates]);
 
+  // filtes data based on the range the user has selected
   useEffect(() => {
     const formatedData = rawData.filter((data) => {
       const { gpsLatitude, gpsLongitude } = data;
@@ -42,6 +45,7 @@ export default function Find() {
     setData(formatedData);
   }, [range, rawData]);
 
+  // Show this when GPS is not availabe
   if (gpsError)
     return (
       <div>
@@ -65,7 +69,7 @@ export default function Find() {
     );
 
   return (
-    <section className="">
+    <section>
       {data.map((itemInfo) => (
         <Card key={uuidv4()} data={itemInfo} />
       ))}

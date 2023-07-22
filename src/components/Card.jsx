@@ -33,6 +33,7 @@ export default function Card({ data }) {
 
   return (
     <>
+      {/* This is the card body */}
       <div
         className="flex flex-col md:flex-row p-1 bg-white m-5 rounded-xl mx-auto"
         onClick={() => setIsModalOpen(true)}
@@ -54,6 +55,8 @@ export default function Card({ data }) {
           </div>
         </div>
       </div>
+
+      {/* This is the modal body */}
       <dialog
         id="my_modal_5"
         className="modal modal-bottom sm:modal-middle mx-auto shadow-2xl bg-black bg-opacity-60"

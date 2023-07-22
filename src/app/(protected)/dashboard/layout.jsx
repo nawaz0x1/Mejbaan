@@ -10,6 +10,7 @@ export default function Dashboard({ children }) {
   const router = useRouter();
   const [menu, setMenu] = useState('find');
 
+  // Switches between the Find and Provide page
   useEffect(() => {
     const route = `/dashboard/${menu}`;
     router.push(route);

@@ -2,12 +2,7 @@
 
 import { useState, createContext, useEffect } from 'react';
 
-export const DataContext = createContext({
-  coordinates: [0, 0],
-  setCoordinates: () => {},
-  data: [],
-  setData: () => {},
-});
+export const DataContext = createContext({});
 
 export function DataContextProvider({ children }) {
   const [coordinates, setCoordinates] = useState([0, 0]);
@@ -35,6 +30,7 @@ export function DataContextProvider({ children }) {
     setCoordinates([latitude, longitude]);
   };
 
+  // Get's GPS coordinates and update them.
   const getGpsLocation = () => {
     try {
       navigator.geolocation.getCurrentPosition(gpsHandler, () => {

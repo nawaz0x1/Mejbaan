@@ -1,6 +1,8 @@
 import { DataContext } from '@/context/dataContext';
 import { useContext } from 'react';
 
+// Shows a slider to adjust range (KM)
+
 export default function RangeBar() {
   const { range, setRange } = useContext(DataContext);
   return (

@@ -24,7 +24,7 @@ export default function Register() {
     setIsWorking(true);
 
     try {
-      const response = await loginUser(formData);
+      await loginUser(formData);
       setIsLoggedIn(true);
       router.push('/dashboard');
     } catch (error) {

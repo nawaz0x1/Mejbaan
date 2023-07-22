@@ -14,6 +14,7 @@ export default function Edit({ params }) {
   const [sending, setSending] = useState(false);
   const [error, setError] = useState(false);
 
+  // Gets item data
   const fetcher = async () => {
     const response = await getItemInfo(id);
     setData(response);
@@ -27,6 +28,7 @@ export default function Edit({ params }) {
     const { id, value } = e.target;
     setData({ ...data, [id]: value });
   };
+
   const submitHandler = async (e) => {
     e.preventDefault();
     setSending(true);
@@ -39,6 +41,7 @@ export default function Edit({ params }) {
     }
   };
 
+  // Shows if error has occured during submittion (eg. connection failure)
   if (error)
     return (
       <div className="w-10/12 max-w-sm h-40 bg-white rounded-xl flex flex-col justify-center items-center">

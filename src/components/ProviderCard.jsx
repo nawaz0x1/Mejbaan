@@ -11,6 +11,14 @@ export default function ProviderCard({ data }) {
   const { item, imgUrl, $id, active } = data;
   const [blank, setBlank] = useState(false);
 
+  const deleteHandler = async () => {
+    setBlank(true);
+    await deleteItem($id);
+    router.refresh();
+  };
+
+  // When user click delete button it updates the blank state and hides this comopent as
+  // the delete oparation may take some time and done in the background
   if (blank) return <></>;
 
   return (
@@ -49,11 +57,7 @@ export default function ProviderCard({ data }) {
         </button>
         <button
           className="btn bg-red-700 text-white hover:bg-red-800 p-2"
-          onClick={async () => {
-            setBlank(true);
-            await deleteItem($id);
-            router.refresh();
-          }}
+          onClick={deleteHandler}
         >
           <Image src={DeleteIcon} width={25} />
           <span className="hidden sm:block">Delete</span>

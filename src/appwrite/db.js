@@ -3,11 +3,13 @@ import { client, getUser } from './utils';
 
 const databases = new Databases(client);
 
+// Gets food data within 20KM range from database
 export const getFoodData = async (latitude, longitude) => {
-  const desiredDistanceMeters = 20000;
+  const desiredDistanceMeters = 20000; // 20 KM
   const oneDegreeInMeters = 111320; // Approximate number of meters in one degree of latitude
   const degreeRange = desiredDistanceMeters / oneDegreeInMeters;
 
+  // Filters 20KM GPS range and active items
   const filters = [
     Query.greaterThanEqual('gpsLatitude', latitude - degreeRange),
     Query.lessThanEqual('gpsLatitude', latitude + degreeRange),
@@ -25,6 +27,7 @@ export const getFoodData = async (latitude, longitude) => {
   return response;
 };
 
+// Add new item in database
 export const addItemAsProvider = async (data) => {
   try {
     const response = await databases.createDocument(
@@ -39,6 +42,7 @@ export const addItemAsProvider = async (data) => {
   }
 };
 
+// Gets item added by the user
 export const getProvidedItems = async () => {
   try {
     const userData = await getUser();
@@ -55,6 +59,7 @@ export const getProvidedItems = async () => {
   }
 };
 
+// Delets item by ID
 export const deleteItem = async (id) => {
   try {
     const response = await databases.deleteDocument(
@@ -67,6 +72,7 @@ export const deleteItem = async (id) => {
   }
 };
 
+// Gets item data by ID
 export const getItemInfo = async (id) => {
   try {
     const response = await databases.getDocument(
@@ -80,6 +86,7 @@ export const getItemInfo = async (id) => {
   }
 };
 
+// Updates data of a spacific item
 export const updateItemInfo = async (id, data) => {
   try {
     const promise = await databases.updateDocument(

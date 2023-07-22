@@ -37,7 +37,8 @@ export default function AddItem() {
     setImage(e.target.files[0]);
   };
 
-  const imageUploader = async (e) => {
+  // Uploades image and return URL
+  const imageUploader = async () => {
     try {
       const imgUrl = await imageUpload(image);
       return imgUrl;
@@ -85,6 +86,7 @@ export default function AddItem() {
     setSending(false);
   };
 
+  // Shows if error has occured during submittion (eg. connection failure)
   if (error)
     return (
       <div className="w-10/12 max-w-sm h-40 bg-white rounded-xl flex flex-col justify-center items-center">

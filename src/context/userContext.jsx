@@ -13,6 +13,7 @@ export function UserContextProvider({ children }) {
   const value = { isLoggedIn, setIsLoggedIn };
 
   useEffect(() => {
+    // Check if the user is logged in and updates the state
     (async () => {
       const response = await isUserLoggedIn();
       setIsLoggedIn(response);

@@ -8,6 +8,7 @@ export const client = new Client().setEndpoint(endpoint).setProject(projectId);
 
 const account = new Account(client);
 
+// Creates new account
 export const createUserAccount = async ({ name, email, password }) => {
   try {
     const response = await account.create(ID.unique(), email, password, name);
@@ -18,6 +19,7 @@ export const createUserAccount = async ({ name, email, password }) => {
   }
 };
 
+// Login existing user
 export const loginUser = async ({ email, password }) => {
   try {
     const response = await account.createEmailSession(email, password);
@@ -27,6 +29,7 @@ export const loginUser = async ({ email, password }) => {
   }
 };
 
+// Get user data including name and id
 export const getUser = async () => {
   try {
     const response = await account.get();
@@ -36,6 +39,7 @@ export const getUser = async () => {
   }
 };
 
+// Logout current user
 export const logoutUser = async (sessionID = 'current') => {
   try {
     const response = await account.deleteSession(sessionID);
@@ -45,11 +49,13 @@ export const logoutUser = async (sessionID = 'current') => {
   }
 };
 
+// Checks if any user in currently loggedin
 export const isUserLoggedIn = async () => {
   const user = await getUser();
   return Boolean(user);
 };
 
+// Uploads image in bucket storage
 export const imageUpload = async (file) => {
   const storage = new Storage(client);
   try {

@@ -7,6 +7,8 @@ import { useRouter } from 'next/navigation';
 export default function DashboardLayout({ children }) {
   const router = useRouter();
   const { isLoggedIn } = useContext(UserContext);
+
+  // If the user is not logged in it will redirect them to the login page
   useEffect(() => {
     if (!isLoggedIn) router.replace('/login');
   });
