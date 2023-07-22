@@ -49,8 +49,6 @@ export default function Edit({ params }) {
         <h2 className="font-semibold text-red-500">Something went wrong !</h2>
       </div>
     );
-  else if (!data.length)
-    return <span className="mt-5 loading loading-spinner loading-lg"></span>;
 
   return (
     <main>
