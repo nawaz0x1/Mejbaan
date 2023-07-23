@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useContext } from 'react';
+import { useEffect, useContext, useState } from 'react';
 import { DataContext } from '@/context/dataContext';
 import Card from '@/components/Card';
 import { getFoodData } from '@/appwrite/db';
@@ -9,18 +9,21 @@ import { calculateDistance } from '@/utils/utils';
 
 export default function Find() {
   const { menu } = useContext(DataContext);
+  const [loading, setLoading] = useState(true);
 
   const { range, data, setData, coordinates, rawData, setRawData, gpsError } =
     useContext(DataContext);
 
   // Get Items within the range. If failed, try again in after 3 seconds
   const fetchData = async () => {
-    const { documents } = await getFoodData(coordinates[0], coordinates[1]);
-    if (documents) {
+    try {
+      const { documents } = await getFoodData(coordinates[0], coordinates[1]);
       setRawData(documents);
-      return;
+    } catch (error) {
+      setTimeout(fetchData, 3000);
+    } finally {
+      setLoading(false);
     }
-    setTimeout(fetchData, 3000);
   };
 
   useEffect(() => {
@@ -71,8 +74,11 @@ export default function Find() {
     );
   // Next.js approuter is slow and this hides the Card components during path change
   else if (menu !== 'find') return <></>;
-  else if (!data.length)
+  else if (loading)
     return <span className="mt-5 loading loading-spinner loading-lg"></span>;
+  else if (!rawData.length)
+    return <div className="p-4 text-xl">No one is providing in your area.</div>;
+
   return (
     <section>
       {data.map((itemInfo) => (

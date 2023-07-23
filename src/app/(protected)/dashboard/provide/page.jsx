@@ -10,6 +10,7 @@ import SadFace from '@/assets/sadFace.png';
 export default function Provide() {
   const [data, setData] = useState([]);
   const [error, setError] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   // Gets the items that the user has added
   const fetcher = async () => {
@@ -20,6 +21,8 @@ export default function Provide() {
     } catch (error) {
       setError(true);
       setTimeout(fetcher, 3000);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -35,11 +38,14 @@ export default function Provide() {
         <h2 className="font-semibold text-red-500">Something went wrong !</h2>
       </div>
     );
-  else if (!data.length)
+  else if (loading)
     return <span className="mt-5 loading loading-spinner loading-lg"></span>;
 
   return (
     <main className="flex  flex-col items-center mx-auto gap-3">
+      {!data.length && (
+        <div className="p-4 text-xl">You have not provided any item yet!</div>
+      )}
       <section className="container">
         {data.map((item) => {
           return <ProviderCard key={item.itemID} data={item} />;
