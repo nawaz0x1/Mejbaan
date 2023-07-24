@@ -25,12 +25,14 @@ const LandingPage = () => {
         <div className="h-screen w-screen bg-[url('../assets/222.jpg')] bg-cover bg-center snap-start">
           <div className="h-screen w-screen bg-mejbaan bg-opacity-80 flex flex-col justify-center">
             <h2 className="text-4xl text-center flex flex-col pb-1 font-light">
-              <span>MORE THAN</span>
-              <span className="text-yellow-300 text-8xl p-5 typo1">1/3</span>
-              <span className="p-2">OF ALL FOOD IS BEING WASTED</span>
+              <span className="p-2 pb-8">MORE THAN</span>
+              <span className="text-yellow-300 text-[100px] typo1 p-2 leading-tight">
+                <sup>1</sup>&frasl;<sub>3</sub>
+              </span>
+              <span className="p-2 pt-0">OF ALL FOOD IS BEING WASTED</span>
             </h2>
-            <div className="p-4">
-              <h3 className="text-xl font-light p-2 pt-4 text-center font-light">
+            <div className="">
+              <h3 className="text-xl font-light p-2 pt-4 text-center">
                 We waste 2.5 billion tonnes of food annually, whilst 828 million
                 people go hungry every day!
               </h3>
@@ -43,7 +45,7 @@ const LandingPage = () => {
               <h3 className="text-4xl text-center flex flex-col drop-shadow-2xl shadow-black">
                 <span className="font-light">Let&apos;s</span>
                 <span className="typo1 text-8xl p-4 text-yellow-300">
-                  Share
+                  share
                 </span>
                 <span className="font-light">
                   our surplus food with those in need!
