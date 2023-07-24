@@ -76,7 +76,7 @@ export default function Find() {
   else if (menu !== 'find') return <></>;
   else if (loading)
     return <span className="mt-5 loading loading-spinner loading-lg"></span>;
-  else if (!rawData.length)
+  else if (!data.length)
     return <div className="p-4 text-xl">No one is providing in your area.</div>;
 
   return (
