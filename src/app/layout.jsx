@@ -6,7 +6,7 @@ const inter = Inter({ subsets: ['latin'] });
 
 export const metadata = {
   title: 'Mejbaan',
-  description: 'A Food Sharing Platform',
+  description: 'Share surplus food with those in need!',
 };
 
 export default function RootLayout({ children }) {

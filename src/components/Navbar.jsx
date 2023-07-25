@@ -14,14 +14,14 @@ export default function Navbar() {
       <div className="flex p-2 md:pr-6">
         <div className="pr-1 md:pr-2">
           <Link href={'/login'}>
-            <button className="bg-yellow-300 hover:bg-yellow-500 text-teal-700 p-3 text-2xl font-bold rounded-3xl">
+            <button className="bg-yellow-300 hover:bg-yellow-500 text-teal-700 p-3 text-2xl font-bold rounded-lg">
               Login
             </button>
           </Link>
         </div>
         <div className="pl-1 md:pl-2">
           <Link href={'/register'}>
-            <button className="bg-yellow-300 hover:bg-yellow-500 text-teal-700 p-3 text-2xl font-bold rounded-3xl">
+            <button className="bg-yellow-300 hover:bg-yellow-500 text-teal-700 p-3 text-2xl font-bold rounded-lg">
               Register
             </button>
           </Link>

@@ -1,6 +1,6 @@
 export const metadata = {
   title: 'Provide | Mejbaan',
-  description: 'A Food Sharing Platform',
+  description: 'Share surplus food with those in need!',
 };
 
 export default function ProvideLayout({ children }) {

@@ -1,6 +1,6 @@
 export const metadata = {
   title: 'Add Item | Mejbaan',
-  description: 'A Food Sharing Platform',
+  description: 'Share surplus food with those in need!',
 };
 
 export default function AddItemLayout({ children }) {
