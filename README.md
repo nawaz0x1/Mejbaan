@@ -1,34 +1,60 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Mejbaan
 
-## Getting Started
+![Mejbaan Logo](https://i.ibb.co/mtX9Sjx/Web-capture-25-7-2023-195629-localhost.jpg)
 
-First, run the development server:
+Mejbaan is a surplus food sharing web application aimed at reducing food waste and combating hunger. The app enables users to share their extra food items with those in need, thereby contributing to the United Nations' Sustainable Development Goal of "Zero Hunger."
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+## Table of Contents
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- [Introduction](#introduction)
+- [Problem Statement](#problem-statement)
+- [Features](#features)
+- [Technologies Used](#technologies-used)
+- [How to Use](#how-to-use)
+- [Acknowledgments](#acknowledgments)
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## Introduction
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+Mejbaan is a project developed for the Global NGO Executive Committee (GNEC) hackathon with a mission to address the critical issue of food wastage and hunger in the world. More than one-third of all food produced is wasted, while millions of people suffer from hunger and malnutrition every day. This web app aims to bridge this gap by creating a platform where individuals can share their surplus food items, and NGOs or volunteers can collect and distribute the food to those in need.
 
-## Learn More
+## Problem Statement
 
-To learn more about Next.js, take a look at the following resources:
+Approximately 2.5 billion tonnes of food are wasted annually, while around 828 million people suffer from hunger on a daily basis. The Mejbaan project tackles this issue by providing a user-friendly platform for surplus food sharing, enabling people to make a meaningful impact in their communities.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Features
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+- **User Registration and Authentication**: Users can sign up and log in securely to their accounts, ensuring a personalized experience.
 
-## Deploy on Vercel
+- **Surplus Food Listing**: Users can list the surplus food items they wish to donate. They can provide details such as the type of food, quantity, and expiry date (if applicable).
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- **Location-based Search**: Mejbaan uses GPS/Location Services to provide accurate locations and distances between food donors and potential recipients.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Technologies Used
+
+- Front-end:
+
+  - JavaScript
+  - React.js
+  - Next.js
+  - Tailwind CSS
+  - [Appwrite](https://appwrite.io) (Open-source Backend as a Service) for user authentication and data storage.
+
+- Back-end (handled by Appwrite):
+
+  - Database: MongoDB
+
+- API Integration:
+  - Geolocation API (Browser)
+
+## How to Use
+
+1. Clone the repository: `git clone https://github.com/nawaz0x1/mejbaan.git`
+2. Install dependencies: `npm install`
+3. Set up environment variables for Appwrite configuration.
+4. Run the application: `npm run dev`
+
+## Acknowledgments
+
+I extend my gratitude to the Global NGO Executive Committee (GNEC) for organizing the hackathon and promoting initiatives towards achieving the United Nations' Sustainable Development Goals. Special thanks to the mentors, judges, and volunteers for their support and encouragement throughout this project.
+
+Together, let's make a difference in the fight against hunger! 🌱🌍🍲
